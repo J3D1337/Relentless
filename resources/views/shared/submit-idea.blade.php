@@ -1,9 +1,9 @@
-<h4> Looking for a game </h4>
+<h4 style="margin-top: 20px;"> Looking for a game </h4>
 <div class="row">
     <form action="{{ route ('ideas.store')}}" method="post">
         @csrf
     <div class="mb-3">
-        <textarea name="idea" class="form-control" id="idea" rows="3"></textarea>
+        <textarea name="content" class="form-control" id="content" rows="3"></textarea>
         @error('idea')
             <span class="fs-6 text-danger"> {{$message}} </span>
         @enderror
