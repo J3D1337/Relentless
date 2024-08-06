@@ -1,3 +1,4 @@
+@auth
 <h4 style="margin-top: 20px;"> Looking for a game </h4>
 <div class="row">
     <form action="{{ route ('ideas.store')}}" method="post">
@@ -13,3 +14,7 @@
     </div>
 </form>
 </div>
+@endauth
+@guest
+<h4 style="margin-top: 20px;"> Login to look for a game </h4>
+@endguest
