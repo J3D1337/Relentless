@@ -1,21 +1,23 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container">
+    <div class="container my-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-7">
                         @include('shared.success-message')
-                        @include('shared.submit-idea')
+                        <div class="mt-3">
+                            @include('shared.user-card')
+                        </div>
                         <hr>
                         @foreach($ideas as $idea)
-                        <div class="mt-3">
-                            @include('shared.idea-card')
-                        </div>
+                            <div class="mt-3">
+                                @include('shared.idea-card')
+                            </div>
                         @endforeach
                         <div class="mt-3">
-                        {{ $ideas->links() }}
+                            {{ $ideas->links() }}
                         </div>
                     </div>
                     <div class="col-5">
@@ -23,6 +25,7 @@
                         @include('shared.search-bar')
 
                         @include('shared.looking-for')
+                    </div>
                     </div>
                 </div>
             </div>

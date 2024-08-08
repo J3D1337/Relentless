@@ -36,7 +36,10 @@
                 </li>
                 <li><a class="dropdown-item" href="#"></a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <form action="{{ route('users.show', Auth::user()->id) }}" method="GET">
+                    @csrf
+                    <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Profile</a></li>
+                </form>
             </ul>
         </li>
         @else
