@@ -9,16 +9,21 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Feed</a>
+            <a class="nav-link {{ Route::is('dashboard') ? 'text-dark bg-primary rounded' : '' }}"
+               aria-current="page"
+               href="{{ route('dashboard') }}">
+                Feed
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Support</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Terms</a>
+            <a class="nav-link {{ Route::is('terms') ? 'text-dark bg-primary rounded' : ''}}"
+            aria-current="page"
+            href="{{route ('terms')}}">
+            Terms
+            </a>
         </li>
     </ul>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

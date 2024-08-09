@@ -23,3 +23,27 @@ body {
     width: 30px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
 }
+
+
+/* Remove underline from all links */
+.nav-link {
+    text-decoration: none;
+}
+
+/* Style for the active page */
+.active-page {
+    background-color: white;  /* White background */
+    color: black;             /* Black text */
+    border-radius: 5px;       /* Rounded corners */
+    padding: 5px 10px;        /* Padding for better spacing */
+}
+
+
+
+
+
+
+
+
+
+

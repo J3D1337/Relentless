@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card-body" style="margin-top: 20px; margin-left: 20px;">
     <div class="hstack gap-2 mb-3">
         <div class="avatar">
             <a href="#!"><img class="avatar-img rounded-circle img-small"
