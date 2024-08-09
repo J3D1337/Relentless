@@ -1,4 +1,4 @@
-<div class="card" style="margin-top: 20px;">
+<div class="card" style="margin-top: 20px; margin-left: 20px;">
     <div class="card-header pb-0 border-1">
         <h5 class="mt-4">Search For Games</h5>
     </div>
