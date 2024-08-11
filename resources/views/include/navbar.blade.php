@@ -16,7 +16,11 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Support</a>
+            <a class="nav-link {{ Route::is('feed') ? 'text-dark bg-primary rounded' : '' }}"
+               aria-current="page"
+               href="{{ route('feed') }}">
+                Following
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Route::is('terms') ? 'text-dark bg-primary rounded' : ''}}"
@@ -45,6 +49,12 @@
                     @csrf
                     <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Profile</a></li>
                 </form>
+                @if(Auth::user()->is_admin)
+                <form action="{{ route('users.show', Auth::user()->id) }}" method="GET">
+                    @csrf
+                    <li><a class="dropdown-item" href="{{ route('admin.dashboard', Auth::user()->id) }}">Admin Profile</a></li>
+                </form>
+                @endif
             </ul>
         </li>
         @else
