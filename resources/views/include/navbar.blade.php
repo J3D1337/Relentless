@@ -12,7 +12,7 @@
             <a class="nav-link {{ Route::is('dashboard') ? 'text-dark bg-primary rounded' : '' }}"
                aria-current="page"
                href="{{ route('dashboard') }}">
-                Feed
+                Home
             </a>
         </li>
         <li class="nav-item">

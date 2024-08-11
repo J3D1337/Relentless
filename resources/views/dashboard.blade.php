@@ -7,11 +7,11 @@
                 <div class="row">
                     <div class="col-7">
                         @include('shared.success-message')
-                        @include('shared.submit-idea')
+                        @include('ideas.shared.submit-idea')
                         <hr>
                         @foreach($ideas as $idea)
                         <div class="mt-3">
-                            @include('shared.idea-card')
+                            @include('ideas.shared.idea-card')
                         </div>
                         @endforeach
                         <div class="mt-3">
