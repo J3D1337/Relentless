@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Models\Idea;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+
 
 
 class IdeaController extends Controller
 {
+    use AuthorizesRequests;
+
     public function show(Idea $idea)
     {
         return view('ideas.show', compact('idea'));
@@ -17,27 +22,24 @@ class IdeaController extends Controller
 
     public function edit(Idea $idea)
     {
-        if(auth()->id() !== $idea->user_id){
-            abort(404);
-        }
+        $this->authorize('update', $idea);
 
         $editing = true;
+
         return view('ideas.show', compact('idea', 'editing'));
     }
 
     public function update(Idea $idea)
     {
+        $this->authorize('update', $idea);
 
-        if(auth()->id() !== $idea->user_id){
-            abort(404);
-        }
         $validated = request()->validate([
             'content' => 'required|min:2|max:255',
         ]);
 
-        $idea->update($validated);
+        return redirect()->route('ideas.show', $idea);
 
-        return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea updated successfully!');
+
     }
 
 
@@ -56,9 +58,7 @@ class IdeaController extends Controller
 
     public function destroy(Idea $idea)
     {
-        if(auth()->id() !== $idea->user_id){
-            abort(404);
-        }
+        $this->authorize('delete', $idea);
 
         $idea->delete();
 

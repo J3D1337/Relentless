@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Idea;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UserController extends Controller
 {
+    use AuthorizesRequests;
 
     /**
      * Display the specified resource.
@@ -27,15 +29,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (auth()->user()->id !== $user->id) {
-            return redirect()->route('users.show', $user);
-        }
+        $this->authorize('update', $user);
 
-        else {
-            $editing = true;
-            $ideas = $user->ideas()->paginate(5);
-            return view('users.edit', compact('user', 'editing', 'ideas'));
-        }
+        $editing = true;
+        $ideas = $user->ideas()->paginate(5);
+
+        return view('users.edit', compact('user', 'editing', 'ideas'));
 
     }
 
@@ -44,6 +43,8 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
+        $this->authorize('update', $user);
+
         $validated = request()->validate([
             'name' => [
                 'required',
