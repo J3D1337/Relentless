@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Idea;
-
+use GuzzleHttp\Promise\Create;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-
-
+use App\Http\Requests\CreateIdeaRequest;
+use App\Http\Requests\UpdateIdeaRequest;
 
 class IdeaController extends Controller
 {
@@ -29,13 +28,13 @@ class IdeaController extends Controller
         return view('ideas.show', compact('idea', 'editing'));
     }
 
-    public function update(Idea $idea)
+    public function update(UpdateIdeaRequest $request , Idea $idea)
     {
         $this->authorize('update', $idea);
 
-        $validated = request()->validate([
-            'content' => 'required|min:2|max:255',
-        ]);
+        $validated = $request->validated();
+
+        $idea->update($validated);
 
         return redirect()->route('ideas.show', $idea);
 
@@ -43,11 +42,9 @@ class IdeaController extends Controller
     }
 
 
-    public function store()
+    public function store(CreateIdeaRequest $request)
     {
-        $validated = request()->validate([
-            'content' => 'required|min:2|max:255',
-        ]);
+        $validated = $request->validated();
 
         $validated['user_id'] = auth()->id();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -41,25 +42,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $this->authorize('update', $user);
 
-        $validated = request()->validate([
-            'name' => [
-                'required',
-                'min:3',
-                'max:40',
-                Rule::unique('users', 'name')->ignore($user->id),
-            ],
-            'bio' => 'nullable|max:40',
-            'image' => 'nullable|image',
-        ]);
+        $validated = $request->validated();
 
 
-        if(request()->has('image'))
+        if($request->has('image'))
         {
-            $imagePath = request()->file('image')->store('profile', 'public');
+            $imagePath = $request->file('image')->store('profile', 'public');
             $validated['image'] = $imagePath;
         }
 
