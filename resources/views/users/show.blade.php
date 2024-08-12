@@ -1,5 +1,8 @@
 @extends('layout.app')
 
+@section('title', $user->name)
+
+
 @section('content')
     <div class="container my-4">
         <div class="row">
