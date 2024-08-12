@@ -43,24 +43,24 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateUserRequest $request, User $user)
+{
+    $validated = $request->validated();
+
+    if($request->hasFile('image')) // Check if a new image is uploaded
     {
+        // Delete the old image only if a new one is uploaded
+        Storage::disk('public')->delete($user->image);
 
-        $validated = $request->validated();
-
-
-        if($request->has('image'))
-        {
-            $imagePath = $request->file('image')->store('profile', 'public');
-            $validated['image'] = $imagePath;
-        }
-
-        Storage::disk('public')->delete($user->image ?? '');
-
-
-        $user->update($validated);
-
-
-        return redirect()->route('users.show', $user);
+        // Store the new image and update the validated array with the new path
+        $imagePath = $request->file('image')->store('profile', 'public');
+        $validated['image'] = $imagePath;
     }
+
+    // Update the user's information with the validated data
+    $user->update($validated);
+
+    return redirect()->route('users.show', $user);
+}
+
 
 }

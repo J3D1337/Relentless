@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Edit User')
+
 @section('content')
     <div class="container my-4">
         <div class="row">
