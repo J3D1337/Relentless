@@ -10,6 +10,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
+
         $ideas = Idea::withCount('likes')->orderBy('created_at', 'desc');
 
         if(request()->has('search'))
@@ -19,8 +21,11 @@ class DashboardController extends Controller
 
         $games = Game::all();
         return view('dashboard', [
+
             'games' => $games,
             'ideas' => $ideas ->paginate(5)
+
+
         ]);
 
 

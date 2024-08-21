@@ -40,8 +40,11 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])
     ->middleware(['auth', EnsureUserIsAdmin::class])
     ->name('admin.dashboard');
 
+
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
 Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
+
+
 
 
 

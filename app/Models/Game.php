@@ -9,10 +9,14 @@ class Game extends Model
 {
     use HasFactory;
 
+
     protected $fillable = ['title', 'image']; // Correct property name
 
     public function ideas()
     {
         return $this->hasMany(Idea::class)->latest();
     }
+
+
+
 }
