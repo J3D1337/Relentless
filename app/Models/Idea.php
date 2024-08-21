@@ -12,8 +12,13 @@ class Idea extends Model
     protected $fillable = [
         'user_id',
         'content',
+        'game_id'
 
     ];
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 
     public function comments()
     {

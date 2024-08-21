@@ -5,9 +5,6 @@
     <h5>Looking For</h5>
     <table class="table table-hover">
         <tbody>
-            @if ($games->isEmpty())
-                <p>No games available at the moment.</p>
-            @else
                 @foreach ($games as $game)
                     <tr>
                         <td style="width: 60px;">
@@ -20,7 +17,7 @@
                             </div>
                         </td>
                         <td>
-                            <a class="h6 mb-0" href="#!">{{ $game->title }}</a>
+                            <a class="h6 mb-0" href="{{ route('games.show', $game->id) }}">{{ $game->title }}</a>
                             <p class="mb-0 small text-truncate"></p>
                         </td>
                         <td class="text-end">
@@ -30,7 +27,6 @@
                         </td>
                     </tr>
                 @endforeach
-            @endif
         </tbody>
     </table>
     <div class="d-grid mt-3">

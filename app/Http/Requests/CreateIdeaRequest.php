@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class CreateIdeaRequest extends FormRequest
 {
     /**
@@ -22,7 +23,8 @@ class CreateIdeaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'required|min:2|max:255'
+            'content' => 'required|min:2|max:255',
+            'game_id' => 'required|exists:games,id',
         ];
     }
 }
