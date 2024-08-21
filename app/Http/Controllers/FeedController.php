@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Idea;
-
+use App\Models\Game;
 class FeedController extends Controller
 {
     /**
@@ -22,9 +22,10 @@ class FeedController extends Controller
             $ideas = $ideas->where('content','like' , "%" . request()->get('search', '') . "%");
         }
 
-
+        $games = Game::all();
         return view('dashboard', [
-            'ideas' => $ideas ->paginate(5)
+            'ideas' => $ideas ->paginate(5),
+            'games' => $games
         ]);
 
 
