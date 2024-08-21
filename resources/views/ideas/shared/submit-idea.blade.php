@@ -1,5 +1,5 @@
 @auth
-<h4 style="margin-top: 20px;"> Looking for a game </h4>
+<h4 style="margin-top: 20px;"> Minds </h4>
 <div class="row">
     <form action="{{ route ('ideas.store')}}" method="post">
         @csrf

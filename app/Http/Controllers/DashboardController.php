@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use Illuminate\Http\Request;
+use App\Models\Game;
 
 class DashboardController extends Controller
 {
@@ -16,8 +17,9 @@ class DashboardController extends Controller
             $ideas = $ideas->where('content','like' , "%" . request()->get('search', '') . "%");
         }
 
-
+        $games = Game::all();
         return view('dashboard', [
+            'games' => $games,
             'ideas' => $ideas ->paginate(5)
         ]);
 

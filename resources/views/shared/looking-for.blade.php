@@ -25,6 +25,6 @@
                 class="fa-solid fa-plus"> </i></a>
     </div>
     <div class="d-grid mt-3">
-        <a class="btn btn-sm btn-primary-soft" href="#!">Show More</a>
+        <a class="btn btn-sm btn-primary-soft" href={{route("games.index")}}>Show More</a>
     </div>
 </div>

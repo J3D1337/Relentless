@@ -12,6 +12,7 @@ use App\Http\Controllers\TermsController;
 use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Middleware\EnsureUserIsAdmin;
+use App\Http\Controllers\GameController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -39,6 +40,8 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])
     ->middleware(['auth', EnsureUserIsAdmin::class])
     ->name('admin.dashboard');
 
+Route::get('/games', [GameController::class, 'index'])->name('games.index');
+Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
 
 
 
