@@ -2,7 +2,7 @@
     $games = \App\Models\Game::all();
 @endphp --}}
 <div class="card-body" style="margin-top: 20px; margin-left: 20px;">
-    <h5>Looking For</h5>
+    <h5>Looking For Game</h5>
     <table class="table table-hover">
         <tbody>
                 @foreach ($games as $game)
@@ -19,11 +19,6 @@
                         <td>
                             <a class="h6 mb-0" href="{{ route('games.show', $game->id) }}">{{ $game->title }}</a>
                             <p class="mb-0 small text-truncate"></p>
-                        </td>
-                        <td class="text-end">
-                            <a class="btn btn-primary-soft rounded-circle icon-md" href="#">
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
                         </td>
                     </tr>
                 @endforeach
