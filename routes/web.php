@@ -41,8 +41,11 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])
     ->name('admin.dashboard');
 
 
-Route::get('/games', [GameController::class, 'index'])->name('games.index');
-Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
+// Route::get('/games', [GameController::class, 'index'])->name('games.index')->middleware('auth');
+// Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show')->middleware('auth');
+
+Route::resource('games', GameController::class)->middleware('auth');
+Route::get('/search-games', [DashboardController::class, 'searchGames'])->name('search.games');
 
 
 
