@@ -30,7 +30,7 @@ class IdeaController extends Controller
         return view('ideas.show', compact('idea', 'editing', 'games'));
     }
 
-    public function update(UpdateIdeaRequest $request , Idea $idea)
+    public function update(UpdateIdeaRequest $request, Idea $idea)
     {
         $this->authorize('update', $idea);
 
@@ -39,22 +39,23 @@ class IdeaController extends Controller
         $idea->update($validated);
 
         return redirect()->route('ideas.show', $idea);
-
-
     }
-
 
     public function store(CreateIdeaRequest $request)
     {
         $validated = $request->validated();
         $validated['user_id'] = auth()->id();
-
-        // Assuming 'game_id' is sent in the request and you need to link ideas to a game
-        $validated['game_id'] = $request->input('game_id');
+        $validated['game_id'] = $request->input('game_id') ?: null;
 
         Idea::create($validated);
 
-        return redirect()->route('games.show', $request->input('game_id'))->with('success', 'Idea created successfully!');
+        if ($validated['game_id']) {
+            return redirect()
+                ->route('games.show', $validated['game_id'])
+                ->with('success', 'Idea created successfully!');
+        } else {
+            return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
+        }
     }
 
     public function destroy(Idea $idea)
@@ -66,4 +67,3 @@ class IdeaController extends Controller
         return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
     }
 }
-

@@ -69,6 +69,12 @@ class UserController extends Controller
         return redirect()->route('users.show', $user);
     }
 
+    public function searchUsers(Request $request)
+{
+    $query = $request->get('query');
+    $users = User::where('name', 'like', '%' . $query . '%')->get(['id', 'name', 'image']);
+    return response()->json($users);
+}
 
 
 }

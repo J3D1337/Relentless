@@ -46,6 +46,7 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])
 
 Route::resource('games', GameController::class)->middleware('auth');
 Route::get('/search-games', [DashboardController::class, 'searchGames'])->name('search.games');
+Route::get('/search-users', [UserController::class, 'searchUsers'])->name('search.users');
 
 
 
