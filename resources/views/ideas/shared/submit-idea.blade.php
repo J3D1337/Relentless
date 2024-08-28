@@ -7,8 +7,8 @@
         <!-- Game selection dropdown -->
         <div class="mb-3">
             <label for="game_id" class="form-label">Select Game</label>
-            <select name="game_id" class="form-control" required>
-                <option value="">-- Choose a Game --</option>
+            <select name="game_id" class="form-control">
+                <option value="">-- Choose a Game (optional) --</option>
                 @foreach($games as $game)
                     <option value="{{ $game->id }}">{{ $game->title }}</option>
                 @endforeach

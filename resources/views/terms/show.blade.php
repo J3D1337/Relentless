@@ -57,10 +57,6 @@
                             Address: [Your Company Address]</p>
                         </div>
                     </div>
-                    <div class="col-5">
-                        @include('shared.search-bar')
-                        @include('shared.looking-for')
-                    </div>
                 </div>
             </div>
         </div>

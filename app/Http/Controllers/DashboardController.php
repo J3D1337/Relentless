@@ -10,14 +10,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::withCount('likes')->orderBy('created_at', 'desc');
-
-        // if(request()->has('search'))
-        // {
-        //     $ideas = $ideas->where('content','like' , "%" . request()->get('search', '') . "%");
-        // }
+        // Fetch ideas and include those without a game_id
+        $ideas = Idea::withCount('likes')
+            ->whereNull('game_id') // include ideas without a game
+            ->orWhereNotNull('game_id') // include ideas with a game
+            ->orderBy('created_at', 'desc');
 
         $games = Game::all();
+
         return view('dashboard', [
             'games' => $games,
             'ideas' => $ideas->paginate(5),

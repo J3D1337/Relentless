@@ -9,12 +9,7 @@ class Idea extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'content',
-        'game_id'
-
-    ];
+    protected $fillable = ['user_id', 'content', 'game_id'];
     public function game()
     {
         return $this->belongsTo(Game::class);
