@@ -4,25 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Idea;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class IdeaLikeController extends Controller
 {
     public function like(Idea $idea)
     {
-        $liker = auth()->user();
+        $user = Auth::user();
 
-        $liker->likes()->attach($idea);
+        // Prevent duplicate likes
+        if (!$user->likesIdea($idea)) {
+            $user->likes()->attach($idea);
+        }
 
-        return redirect()->route('dashboard')->with('success', "Liked idea successfully");
+        return redirect()->back()->with('success', "Liked idea successfully");
     }
 
     public function unlike(Idea $idea)
     {
-        $liker = auth()->user();
+        $user = Auth::user();
 
-        $liker->likes()->detach($idea);
+        // Prevent unliking if not already liked
+        if ($user->likesIdea($idea)) {
+            $user->likes()->detach($idea);
+        }
 
-        return redirect()->route('dashboard')->with('success', "Liked idea successfully");
+        return redirect()->back()->with('success', "Unliked idea successfully");
     }
 }
