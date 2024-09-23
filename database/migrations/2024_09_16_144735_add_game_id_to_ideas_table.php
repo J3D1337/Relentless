@@ -9,17 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('ideas', function (Blueprint $table) {
-            $table->unsignedBigInteger('game_id')->nullable()->change();
+            $table->foreignId('game_id')->nullable()->constrained('games')->onDelete('cascade');
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('ideas', function (Blueprint $table) {
-            $table->unsignedBigInteger('game_id')->nullable(false)->change();
+            $table->dropForeign(['game_id']);
+            $table->dropColumn('game_id');
         });
     }
 };
